@@ -1,0 +1,29 @@
+/.metadata/
+
+#Importante para no cargar el proyecto de Archivos Inecesarios
+# Archivos de IDE
+.classpath
+.project
+.settings/
+.idea/
+.vscode/
+
+# Archivos compilados
+bin/
+target/
+*.class
+
+# Archivos de dependencias
+lib/
+node_modules/
+.mvn/
+
+# Archivos temporales y de sistema
+*.log
+*.bak
+.DS_Store
+Thumbs.db
+
+# Otros archivos innecesarios
+logs/
+
