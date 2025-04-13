@@ -32,7 +32,7 @@ git checkout -b nombre_de_tu_rama
 git push -u origin nombre_de_tu_rama
 ```
 
-## ANTES DE TRABAJAR, ESCRIBIR, MODIFICAR CODEAR O CUALQUIER COSA, PRIMERO UN PULL, asi te aseguras si hay un cambio en la rama principal, tengas tu repo lo mas actualizado posible.
+## ⚠️⚠️⚠️ ANTES DE TRABAJAR, ESCRIBIR, MODIFICAR CODEAR O CUALQUIER COSA, PRIMERO UN PULL, asi te aseguras si hay un cambio en la rama principal, tengas tu repo lo mas actualizado posible. ⚠️⚠️⚠️
 ```sh
 git checkout main
 git pull origin main
