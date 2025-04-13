@@ -19,3 +19,25 @@ cd TuRepo
 ```
 ##⚠️ Acuerdate de Solo Trabajar en tu Rama
 Esto asegura mantener el main en su version mas estable posible.
+
+##⚠🏗️ Creacion de tu Rama
+```sh
+git checkout -b nombre_de_tu_rama
+git push -u origin nombre_de_tu_rama
+```
+
+## Verificacion de la Rama
+```sh
+git checkout -b nombre_de_tu_rama
+git push -u origin nombre_de_tu_rama
+```
+
+## ANTES DE TRABAJAR, ESCRIBIR, MODIFICAR CODEAR O CUALQUIER COSA, PRIMERO UN PULL, asi te aseguras si hay un cambio en la rama principal, tengas tu repo lo mas actualizado posible.
+```sh
+git checkout main
+git pull origin main
+git checkout nombre_de_tu_rama
+git merge main
+```
+
+
