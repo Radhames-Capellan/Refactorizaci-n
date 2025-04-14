@@ -33,11 +33,7 @@ public class EntornosFactorizar {
         }
 
         
-        if (metodoPago.equals("TarjetaCredito")) {
-            total *= 1.05;
-        } else if (metodoPago.equals("PayPal")) {
-            total *= 1.02;
-        }
+        total = metodoPago(metodoPago, total);
 
       
         if (aplicarCuotas) {
@@ -77,6 +73,16 @@ public class EntornosFactorizar {
 
         return total;
     }
+
+
+	private double metodoPago(String metodoPago, double total) {
+		if (metodoPago.equals("TarjetaCredito")) {
+            total *= 1.05;
+        } else if (metodoPago.equals("PayPal")) {
+            total *= 1.02;
+        }
+		return total;
+	}
 
   
     private double aplicarCuponDescuento(double total, String codigoCupon) {
