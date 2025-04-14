@@ -101,14 +101,15 @@ public class EntornosFactorizar {
     }
 
    
-    private double aplicarDescuentoPorUsuario(Usuario usuario, double total) {
-        if (usuario.esEmpleado()) {
-            total *= 0.7; 
+    private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
+        double resultado = total;
+    	if (usuario.esEmpleado()) {
+            resultado *= 0.7; 
         } else if (usuario.esMiembroGold()) {
-            total *= 0.85;  
+            resultado *= 0.85;  
         } else if (usuario.esMiembroSilver()) {
-            total *= 0.9; 
+            resultado *= 0.9; 
         }
-        return total;
+        return resultado;
     }
 }
