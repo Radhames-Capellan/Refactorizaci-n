@@ -2,10 +2,25 @@ package prueba;
 
 public class EntornosFactorizar {
 
-	//1era refactorizacion, separando responsabilidad de calcular base total
+	// 1era refactorizacion, separando responsabilidad de calcular base total
 	private double calcularBaseTotal(double precioBase, int cantidad) {
 		return precioBase * cantidad;
 	}
+	
+	// 2da refactorizacion, separando responsabilidad de descuentos basicos
+	
+	/*
+	 * private double calculoDescuentosBasicos(double total, double descuento,
+	 * boolean tieneTarjetaFidelidad) {
+	 * 
+	 * if (descuento > 0) { total -= total * (descuento / 100); }
+	 * 
+	 * if (tieneTarjetaFidelidad && saldoTarjeta > 0) { total -= saldoTarjeta; }
+	 * return total;
+	 * 
+	 * }
+	 */
+	
 
 	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
 			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
@@ -14,6 +29,9 @@ public class EntornosFactorizar {
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
+	
+
+		
 		if (descuento > 0) {
 			total -= total * (descuento / 100);
 		}
