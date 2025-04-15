@@ -28,6 +28,9 @@ git push -u origin nombre_de_tu_rama
 
 ## Verificacion de la Rama
 ```sh
+//ver en que rama estas!!!
+git branch
+//cambiar a tu rama
 git checkout -b nombre_de_tu_rama
 git push -u origin nombre_de_tu_rama
 ```
