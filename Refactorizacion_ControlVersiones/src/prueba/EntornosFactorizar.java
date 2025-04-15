@@ -63,9 +63,7 @@ public class EntornosFactorizar {
 		}
 
 
-		if (!esEnvioGratis) {
-			total += precioEnvio;
-		}
+		total = aplicarEnvio(esEnvioGratis, precioEnvio, total);
 
 
 
@@ -90,6 +88,13 @@ public class EntornosFactorizar {
 		}
 
 		return total;
+	}
+
+	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
+		if (!esEnvioGratis) {
+			total += precioEnvio;
+		}
+		return  total;
 	}
 	
 	private double metodoPago(String metodoPago, double total) {
