@@ -91,10 +91,8 @@ public class EntornosFactorizar {
 	}
 
 	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
-		if (!esEnvioGratis) {
-			total += precioEnvio;
-		}
-		return  total;
+	
+		return  esEnvioGratis ? total : total + precioEnvio;
 	}
 	
 	private double metodoPago(String metodoPago, double total) {
