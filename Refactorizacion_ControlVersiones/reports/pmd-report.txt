@@ -1,0 +1,77 @@
+src/prueba/EntornosFactorizar.java:3:	AtLeastOneConstructor:	AtLeastOneConstructor: Each class should declare at least one constructor
+src/prueba/EntornosFactorizar.java:3:	CommentRequired:	CommentRequired: Class comments are required
+src/prueba/EntornosFactorizar.java:6:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'cantidad' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:6:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'precioBase' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:12:	LongVariable:	LongVariable: Avoid excessively long variable names like tieneTarjetaFidelidad
+src/prueba/EntornosFactorizar.java:12:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'descuento' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:12:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'tieneTarjetaFidelidad' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:13:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'saldoTarjeta' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:16:	AvoidReassigningParameters:	AvoidReassigningParameters: Avoid reassigning parameters such as 'total'
+src/prueba/EntornosFactorizar.java:26:	CognitiveComplexity:	CognitiveComplexity: The method 'calculaDato(double, int, double, double, boolean, double, boolean, boolean, boolean, String, boolean, int, boolean, double, String, String, String, Usuario)' has a cognitive complexity of 16, current threshold is 15
+src/prueba/EntornosFactorizar.java:26:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/prueba/EntornosFactorizar.java:26:	CyclomaticComplexity:	CyclomaticComplexity: The method 'calculaDato(double, int, double, double, boolean, double, boolean, boolean, boolean, String, boolean, int, boolean, double, String, String, String, Usuario)' has a cyclomatic complexity of 17.
+src/prueba/EntornosFactorizar.java:26:	ExcessiveParameterList:	ExcessiveParameterList: Avoid long parameter lists.
+src/prueba/EntornosFactorizar.java:26:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'cantidad' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:26:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'descuento' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:26:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'impuestos' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:26:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'precioBase' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:26:	NPathComplexity:	NPathComplexity: The method 'calculaDato(double, int, double, double, boolean, double, boolean, boolean, boolean, String, boolean, int, boolean, double, String, String, String, Usuario)' has an NPath complexity of 5760, current threshold is 200
+src/prueba/EntornosFactorizar.java:26:	UseObjectForClearerAPI:	UseObjectForClearerAPI: Rather than using a lot of String arguments, consider using a container object for those values.
+src/prueba/EntornosFactorizar.java:27:	LongVariable:	LongVariable: Avoid excessively long variable names like tieneTarjetaFidelidad
+src/prueba/EntornosFactorizar.java:27:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'esNavidad' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:27:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'esOfertaEspecial' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:27:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'saldoTarjeta' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:27:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'tieneTarjetaFidelidad' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:28:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'aplicarCuotas' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:28:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'cuota' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:28:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'esEnvioGratis' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:28:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'esMiembroVip' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:28:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'metodoPago' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:29:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'categoriaProducto' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:29:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'codigoCupon' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:29:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'precioEnvio' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:29:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'tipoProducto' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:29:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'usuario' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:49:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:51:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:56:	AvoidLiteralsInIfCondition:	AvoidLiteralsInIfCondition: Avoid using literals in if statements
+src/prueba/EntornosFactorizar.java:58:	AvoidLiteralsInIfCondition:	AvoidLiteralsInIfCondition: Avoid using literals in if statements
+src/prueba/EntornosFactorizar.java:60:	AvoidLiteralsInIfCondition:	AvoidLiteralsInIfCondition: Avoid using literals in if statements
+src/prueba/EntornosFactorizar.java:88:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'codigoCupon' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:89:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:90:	AvoidReassigningParameters:	AvoidReassigningParameters: Avoid reassigning parameters such as 'total'
+src/prueba/EntornosFactorizar.java:91:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:97:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'categoriaProducto' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:97:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'tipoProducto' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:98:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:98:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:99:	OnlyOneReturn:	OnlyOneReturn: A method should have only one exit point, and that should be the last statement in the method
+src/prueba/EntornosFactorizar.java:100:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:100:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:101:	OnlyOneReturn:	OnlyOneReturn: A method should have only one exit point, and that should be the last statement in the method
+src/prueba/EntornosFactorizar.java:102:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:102:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/prueba/EntornosFactorizar.java:103:	OnlyOneReturn:	OnlyOneReturn: A method should have only one exit point, and that should be the last statement in the method
+src/prueba/EntornosFactorizar.java:108:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'usuario' is not assigned and could be declared final
+src/prueba/EntornosFactorizar.java:110:	AvoidReassigningParameters:	AvoidReassigningParameters: Avoid reassigning parameters such as 'total'
+src/prueba/Usuario.java:3:	CommentRequired:	CommentRequired: Class comments are required
+src/prueba/Usuario.java:3:	DataClass:	DataClass: The class 'Usuario' is suspected to be a Data Class (WOC=28.571%, NOPA=0, NOAM=10, WMC=15)
+src/prueba/Usuario.java:4:	CommentRequired:	CommentRequired: Field comments are required
+src/prueba/Usuario.java:5:	CommentRequired:	CommentRequired: Field comments are required
+src/prueba/Usuario.java:6:	CommentRequired:	CommentRequired: Field comments are required
+src/prueba/Usuario.java:7:	CommentRequired:	CommentRequired: Field comments are required
+src/prueba/Usuario.java:8:	CommentRequired:	CommentRequired: Field comments are required
+src/prueba/Usuario.java:11:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/prueba/Usuario.java:11:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'email' is not assigned and could be declared final
+src/prueba/Usuario.java:11:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'empleado' is not assigned and could be declared final
+src/prueba/Usuario.java:11:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'miembroGold' is not assigned and could be declared final
+src/prueba/Usuario.java:11:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'miembroSilver' is not assigned and could be declared final
+src/prueba/Usuario.java:11:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'nombre' is not assigned and could be declared final
+src/prueba/Usuario.java:20:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/prueba/Usuario.java:24:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/prueba/Usuario.java:28:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/prueba/Usuario.java:41:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'nombre' is not assigned and could be declared final
+src/prueba/Usuario.java:51:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'email' is not assigned and could be declared final
+src/prueba/Usuario.java:61:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'empleado' is not assigned and could be declared final
+src/prueba/Usuario.java:71:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'miembroGold' is not assigned and could be declared final
+src/prueba/Usuario.java:81:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'miembroSilver' is not assigned and could be declared final
