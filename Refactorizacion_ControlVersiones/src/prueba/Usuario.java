@@ -30,15 +30,60 @@ public class Usuario {
     }
 
 
+   
+    
+
     public String getNombre() {
-        return nombre;
-    }
+		return nombre;
+	}
 
-    public String getEmail() {
-        return email;
-    }
 
-    @Override
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public boolean isEmpleado() {
+		return empleado;
+	}
+
+
+	public void setEmpleado(boolean empleado) {
+		this.empleado = empleado;
+	}
+
+
+	public boolean isMiembroGold() {
+		return miembroGold;
+	}
+
+
+	public void setMiembroGold(boolean miembroGold) {
+		this.miembroGold = miembroGold;
+	}
+
+
+	public boolean isMiembroSilver() {
+		return miembroSilver;
+	}
+
+
+	public void setMiembroSilver(boolean miembroSilver) {
+		this.miembroSilver = miembroSilver;
+	}
+
+
+	@Override
     public String toString() {
         return "Usuario{" +
                 "nombre='" + nombre + '\'' +
