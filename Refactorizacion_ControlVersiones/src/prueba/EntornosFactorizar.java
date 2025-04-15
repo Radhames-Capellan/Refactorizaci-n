@@ -115,15 +115,17 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	private boolean validarProducto(String tipoProducto, String categoriaProducto) {
+	private boolean validarProducto(final String tipoProducto, final String categoriaProducto) {
+		boolean validacion = false;
+		
 		if (tipoProducto.equals("Electronico") && categoriaProducto.equals("Smartphones")) {
-			return true;
+			validacion = true;
 		} else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Hombre")) {
-			return true;
+			validacion = true;
 		} else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Mujer")) {
-			return true;
+			validacion = true;
 		}
-		return false;
+		return validacion;
 	}
 
    
