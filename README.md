@@ -43,4 +43,19 @@ git checkout nombre_de_tu_rama
 git merge main
 ```
 
+## 🚀 Enviar tus cambios a main "hacer Pull Request (merge de tu rama con la rama main)".
+### Cuando tengas todo listo para revisión:
+
+Ve a GitHub.
+
+Haz clic en Pull Requests → New Pull Request.
+
+Compara tu rama con la main.
+
+Agrega un título y una descripción clara de los cambios realizados.
+
+Asigna un revisor (admin o compañero).
+
+Espera aprobación para hacer el merge.
+
 
