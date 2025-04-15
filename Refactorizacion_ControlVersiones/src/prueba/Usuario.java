@@ -15,9 +15,7 @@ public class Usuario {
 		this.miembroSilver = miembroSilver;
 	}
 
-	public boolean esEmpleado() {
-		return empleado;
-	}
+
 
 	
 

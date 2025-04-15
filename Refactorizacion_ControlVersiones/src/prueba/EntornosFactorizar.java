@@ -102,7 +102,7 @@ public class EntornosFactorizar {
 
    
     private double aplicarDescuentoPorUsuario(Usuario usuario, double total) {
-        if (usuario.esEmpleado()) {
+        if (usuario.isEmpleado()) {
             total *= 0.7; 
         } else if (usuario.isMiembroGold()) {
             total *= 0.85;  
