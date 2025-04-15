@@ -9,7 +9,7 @@ public class EntornosFactorizar {
 
 	// 2da refactorizacion, separando responsabilidad de descuentos basicos
 
-	private double calculoDescuentosBasicos(double total, double descuento, boolean tieneTarjetaFidelidad,
+	private double calcularDescuentosBasicos(double total, double descuento, boolean tieneTarjetaFidelidad,
 			double saldoTarjeta) {
 
 		if (descuento > 0) {
@@ -30,7 +30,7 @@ public class EntornosFactorizar {
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
-		calculoDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
+		calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
 
 		total += total * (impuestos / 100);
 
