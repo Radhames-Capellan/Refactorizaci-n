@@ -23,10 +23,14 @@ public class EntornosFactorizar {
 
 	}
 
+
 	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
 			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
 			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
 			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
+
+        
+      
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
@@ -45,12 +49,8 @@ public class EntornosFactorizar {
 		if (esMiembroVip) {
 			total *= 0.8;
 		}
-
-		if (metodoPago.equals("TarjetaCredito")) {
-			total *= 1.05;
-		} else if (metodoPago.equals("PayPal")) {
-			total *= 1.02;
-		}
+		  total = metodoPago(metodoPago, total);
+		
 
 		if (aplicarCuotas) {
 			if (cuota == 3) {
@@ -62,9 +62,16 @@ public class EntornosFactorizar {
 			}
 		}
 
+
 		if (!esEnvioGratis) {
 			total += precioEnvio;
 		}
+
+
+
+
+  
+
 
 		if (codigoCupon != null && !codigoCupon.isEmpty()) {
 			total = aplicarCuponDescuento(total, codigoCupon);
@@ -84,7 +91,18 @@ public class EntornosFactorizar {
 
 		return total;
 	}
-
+	
+	private double metodoPago(String metodoPago, double total) {
+		if (metodoPago.equals("TarjetaCredito")) {
+            total *= 1.05;
+        } else if (metodoPago.equals("PayPal")) {
+            total *= 1.02;
+        }
+		return total;
+	}
+	
+	
+	
 	private double aplicarCuponDescuento(double total, String codigoCupon) {
 		if (codigoCupon.equals("CUPOFF")) {
 			total *= 0.8;
