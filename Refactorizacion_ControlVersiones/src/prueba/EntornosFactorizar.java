@@ -52,15 +52,7 @@ public class EntornosFactorizar {
 		  total = metodoPago(metodoPago, total);
 		
 
-		if (aplicarCuotas) {
-			if (cuota == 3) {
-				total *= 1.1;
-			} else if (cuota == 6) {
-				total *= 1.2;
-			} else if (cuota == 12) {
-				total *= 1.3;
-			}
-		}
+		total = aplicarCuotas(aplicarCuotas, cuota, total);
 
 
 		total = aplicarEnvio(esEnvioGratis, precioEnvio, total);
@@ -87,6 +79,19 @@ public class EntornosFactorizar {
 			total = 0;
 		}
 
+		return total;
+	}
+
+	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
+		if (aplicarCuotas) {
+			if (cuota == 3) {
+				total *= 1.1;
+			} else if (cuota == 6) {
+				total *= 1.2;
+			} else if (cuota == 12) {
+				total *= 1.3;
+			}
+		}
 		return total;
 	}
 
