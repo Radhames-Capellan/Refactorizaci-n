@@ -80,12 +80,20 @@ public class EntornosFactorizar {
 
 	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
 		if (aplicarCuotas) {
-			if (cuota == 3) {
+			switch (cuota) {
+			case 3:
 				total *= 1.1;
-			} else if (cuota == 6) {
+				break;
+			case 6:
 				total *= 1.2;
-			} else if (cuota == 12) {
+				break;
+
+			case 12:
 				total *= 1.3;
+				break;
+
+			default:
+				break;
 			}
 		}
 		return total;
