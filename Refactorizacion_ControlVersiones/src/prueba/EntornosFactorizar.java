@@ -1,5 +1,11 @@
 package prueba;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class EntornosFactorizar {
 
 	// RADHAMES: 1era refactorizacion, separando responsabilidad de calcular base total
@@ -100,7 +106,8 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	private double aplicarCuponDescuento(double total, String codigoCupon) {
+	private double aplicarCuponDescuento(double total, final String codigoCupon) {
+
 		if (codigoCupon.equals("CUPOFF")) {
 			total *= 0.8;
 		} else if (codigoCupon.equals("NAVIDAD2025")) {
@@ -110,19 +117,18 @@ public class EntornosFactorizar {
 	}
 
 	private boolean validarProducto(final String tipoProducto, final String categoriaProducto) {
-		boolean validacion = false;
+		//AITOR: agrupo los productos validos en un Set y compruebo si son validos.
+		final Set<String> productosValidos = new HashSet<>(Arrays.asList(
+				"Electronico-Smartphones",
+				"Ropa-Hombre",
+				"Ropa-Mujer"
+				));
 		
-		if (tipoProducto.equals("Electronico") && categoriaProducto.equals("Smartphones")) {
-			validacion = true;
-		} else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Hombre")) {
-			validacion = true;
-		} else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Mujer")) {
-			validacion = true;
-		}
-		return validacion;
+		return productosValidos.contains(tipoProducto + "-" + categoriaProducto);
 	}
+	
 	//separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del codigo y la complejidad ciclomatica
-	private double calcularDescuento(Usuario usuario) {
+	private double calcularDescuento(final Usuario usuario) {
 	    if (usuario.isEmpleado()) return 0.7;
 	    if (usuario.isMiembroGold()) return 0.85;
 	    if (usuario.isMiembroSilver()) return 0.9;
