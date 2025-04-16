@@ -23,14 +23,10 @@ public class EntornosFactorizar {
 
 	}
 
-
 	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
 			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
 			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
 			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
-
-        
-      
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
@@ -49,8 +45,7 @@ public class EntornosFactorizar {
 		if (esMiembroVip) {
 			total *= 0.8;
 		}
-		  total = metodoPago(metodoPago, total);
-		
+		total = metodoPago(metodoPago, total);
 
 		if (aplicarCuotas) {
 			if (cuota == 3) {
@@ -62,14 +57,7 @@ public class EntornosFactorizar {
 			}
 		}
 
-
 		total = aplicarEnvio(esEnvioGratis, precioEnvio, total);
-
-
-
-
-  
-
 
 		if (codigoCupon != null && !codigoCupon.isEmpty()) {
 			total = aplicarCuponDescuento(total, codigoCupon);
@@ -91,21 +79,19 @@ public class EntornosFactorizar {
 	}
 
 	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
-	
-		return  esEnvioGratis ? total : total + precioEnvio;
+
+		return esEnvioGratis ? total : total + precioEnvio;
 	}
-	
+
 	private double metodoPago(String metodoPago, double total) {
 		if (metodoPago.equals("TarjetaCredito")) {
-            total *= 1.05;
-        } else if (metodoPago.equals("PayPal")) {
-            total *= 1.02;
-        }
+			total *= 1.05;
+		} else if (metodoPago.equals("PayPal")) {
+			total *= 1.02;
+		}
 		return total;
 	}
-	
-	
-	
+
 	private double aplicarCuponDescuento(double total, String codigoCupon) {
 		if (codigoCupon.equals("CUPOFF")) {
 			total *= 0.8;
@@ -125,18 +111,16 @@ public class EntornosFactorizar {
 		}
 		return false;
 	}
+	//separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del codigo y la complejidad ciclomatica
+	private double calcularDescuento(Usuario usuario) {
+	    if (usuario.isEmpleado()) return 0.7;
+	    if (usuario.isMiembroGold()) return 0.85;
+	    if (usuario.isMiembroSilver()) return 0.9;
+	    return 1.0;
+	}
 
-   
-    private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
-        double resultado = total;
-        
-    	if (usuario.isEmpleado()) {
-            resultado *= 0.7; 
-        } else if (usuario.isMiembroGold()) {
-            resultado *= 0.85;  
-        } else if (usuario.isMiembroSilver()) {
-            resultado *= 0.9; 
-        }
-        return resultado;
-    }
+	private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
+	    return total * calcularDescuento(usuario);
+	}
+
 }
