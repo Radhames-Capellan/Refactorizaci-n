@@ -2,12 +2,12 @@ package prueba;
 
 public class EntornosFactorizar {
 
-	// 1era refactorizacion, separando responsabilidad de calcular base total
+	// RADHAMES: 1era refactorizacion, separando responsabilidad de calcular base total
 	private double calcularBaseTotal(double precioBase, int cantidad) {
 		return precioBase * cantidad;
 	}
 
-	// 2da refactorizacion, separando responsabilidad de descuentos basicos
+	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos basicos
 
 	private double calcularDescuentosBasicos(double total, double descuento, boolean tieneTarjetaFidelidad,
 			double saldoTarjeta) {
@@ -22,6 +22,12 @@ public class EntornosFactorizar {
 		return total;
 
 	}
+	
+	//RADHAMES: 4ta refactorizacion, separar responsabilidad de aplicacion de impuesto
+	
+	private double aplicarImpuestos(double total, double impuestos) {
+		return total + (total * (impuestos / 100));
+	}
 
 	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
 			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
@@ -30,9 +36,11 @@ public class EntornosFactorizar {
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
-		calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
+		//RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la variable total para que se actualice su valor al metodo aplicado
+		total = calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
 
-		total += total * (impuestos / 100);
+		total = aplicarImpuestos(total, impuestos);
+		
 
 		if (esOfertaEspecial) {
 			total *= 0.9;
