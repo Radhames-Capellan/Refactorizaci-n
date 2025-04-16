@@ -22,6 +22,12 @@ public class EntornosFactorizar {
 		return total;
 
 	}
+	
+	//RADHAMES: 4ta refactorizacion, separar responsabilidad de aplicacion de impuesto
+	
+	private double aplicarImpuestos(double total, double impuestos) {
+		return total + (total * (impuestos / 100));
+	}
 
 
 	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
@@ -37,7 +43,8 @@ public class EntornosFactorizar {
 		//RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la variable total para que se actualice su valor al metodo aplicado
 		total = calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
 
-		total += total * (impuestos / 100);
+		total = aplicarImpuestos(total, impuestos);
+		
 
 		if (esOfertaEspecial) {
 			total *= 0.9;
