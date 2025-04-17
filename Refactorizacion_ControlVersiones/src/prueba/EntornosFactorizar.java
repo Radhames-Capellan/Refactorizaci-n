@@ -1,7 +1,6 @@
 package prueba;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -109,14 +108,14 @@ public class EntornosFactorizar {
 
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
-
+	//se mejora la legibilidad, y complejidad del codigo al eliminar condicionales multiples
 	private double metodoPago(String metodoPago, double total) {
-		if (metodoPago.equals("TarjetaCredito")) {
-			total *= 1.05;
-		} else if (metodoPago.equals("PayPal")) {
-			total *= 1.02;
-		}
-		return total;
+	    Map<String, Double> multiplicadores = Map.of(
+	        "TarjetaCredito", 1.05,
+	        "PayPal", 1.02
+	    );
+	    
+	    return total * multiplicadores.getOrDefault(metodoPago, 1.0);
 	}
 
 	private double aplicarCuponDescuento(double total, final String codigoCupon) {
