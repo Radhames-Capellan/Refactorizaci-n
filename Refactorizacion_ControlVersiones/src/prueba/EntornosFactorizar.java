@@ -94,10 +94,8 @@ public class EntornosFactorizar {
 	}
 
 	private double asegurarValorNegativo(double total) {
-		if (total < 0) {
-			total = 0;
-		}
-		return total;
+		
+		return  Math.max(total, 0);
 	}
 
 	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
