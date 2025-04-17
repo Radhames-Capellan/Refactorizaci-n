@@ -7,12 +7,14 @@ import java.util.Set;
 
 public class EntornosFactorizar {
 
-	// RADHAMES: 1era refactorizacion, separando responsabilidad de calcular base total
+	// RADHAMES: 1era refactorizacion, separando responsabilidad de calcular base
+	// total
 	private double calcularBaseTotal(double precioBase, int cantidad) {
 		return precioBase * cantidad;
 	}
 
-	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos basicos
+	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos
+	// basicos
 
 	private double calcularDescuentosBasicos(double total, double descuento, boolean tieneTarjetaFidelidad,
 			double saldoTarjeta) {
@@ -27,26 +29,17 @@ public class EntornosFactorizar {
 		return total;
 
 	}
-	
-	//RADHAMES: 4ta refactorizacion, separar responsabilidad de aplicacion de impuesto
-	
+
+	// RADHAMES: 4ta refactorizacion, separar responsabilidad de aplicacion de
+	// impuesto
+
 	private double aplicarImpuestos(double total, double impuestos) {
 		return total + (total * (impuestos / 100));
 	}
 
-	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
-			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
-			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
-			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
-
-		double total = calcularBaseTotal(precioBase, cantidad);
-
-		//RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la variable total para que se actualice su valor al metodo aplicado
-		total = calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
-
-		total = aplicarImpuestos(total, impuestos);
-		
-
+	// RADHAMES: 5ta refactorizacion, promociones especiales
+	private double promocionesEspeciales(double total, boolean esOfertaEspecial, boolean esNavidad,
+			boolean esMiembroVip) {
 		if (esOfertaEspecial) {
 			total *= 0.9;
 		}
@@ -58,6 +51,25 @@ public class EntornosFactorizar {
 		if (esMiembroVip) {
 			total *= 0.8;
 		}
+
+		return total;
+	}
+
+	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
+			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
+			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
+			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
+
+		double total = calcularBaseTotal(precioBase, cantidad);
+
+		// RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la
+		// variable total para que se actualice su valor al metodo aplicado
+		total = calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
+
+		total = aplicarImpuestos(total, impuestos);
+
+		total = promocionesEspeciales(total, esOfertaEspecial, esNavidad, esMiembroVip);
+
 		total = metodoPago(metodoPago, total);
 
 		total = aplicarCuotas(aplicarCuotas, cuota, total);
@@ -108,48 +120,46 @@ public class EntornosFactorizar {
 
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
-	//se mejora la legibilidad, y complejidad del codigo al eliminar condicionales multiples
+
+	// se mejora la legibilidad, y complejidad del codigo al eliminar condicionales
+	// multiples
 	private double metodoPago(final String metodoPago, double total) {
-	   final Map<String, Double> multiplicadores = Map.of(
-	        "TarjetaCredito", 1.05,
-	        "PayPal", 1.02
-	    );
-	    
-	    return total * multiplicadores.getOrDefault(metodoPago, 1.0);
+		final Map<String, Double> multiplicadores = Map.of("TarjetaCredito", 1.05, "PayPal", 1.02);
+
+		return total * multiplicadores.getOrDefault(metodoPago, 1.0);
 	}
 
-	//AITOR: imito al método "metodoPago" para mejorar legibilidad, reducir los condicionales y facilitar la modificacion.
+	// AITOR: imito al método "metodoPago" para mejorar legibilidad, reducir los
+	// condicionales y facilitar la modificacion.
 	private double aplicarCuponDescuento(double total, final String codigoCupon) {
-		final Map<String,Double> cuponesDescuento = Map.of(
-				"CUPOFF",0.8,
-				"NAVIDAD2025", 0.75
-				);
-		
+		final Map<String, Double> cuponesDescuento = Map.of("CUPOFF", 0.8, "NAVIDAD2025", 0.75);
+
 		return total * cuponesDescuento.getOrDefault(codigoCupon, 1.0);
-		
+
 	}
 
 	private boolean validarProducto(final String tipoProducto, final String categoriaProducto) {
-		//AITOR: agrupo los productos validos en un Set y compruebo si son validos.
-		final Set<String> productosValidos = new HashSet<>(Arrays.asList(
-				"Electronico-Smartphones",
-				"Ropa-Hombre",
-				"Ropa-Mujer"
-				));
-		
+		// AITOR: agrupo los productos validos en un Set y compruebo si son validos.
+		final Set<String> productosValidos = new HashSet<>(
+				Arrays.asList("Electronico-Smartphones", "Ropa-Hombre", "Ropa-Mujer"));
+
 		return productosValidos.contains(tipoProducto + "-" + categoriaProducto);
 	}
-	
-	//separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del codigo y la complejidad ciclomatica
+
+	// separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del
+	// codigo y la complejidad ciclomatica
 	private double calcularDescuento(final Usuario usuario) {
-	    if (usuario.isEmpleado()) return 0.7;
-	    if (usuario.isMiembroGold()) return 0.85;
-	    if (usuario.isMiembroSilver()) return 0.9;
-	    return 1.0;
+		if (usuario.isEmpleado())
+			return 0.7;
+		if (usuario.isMiembroGold())
+			return 0.85;
+		if (usuario.isMiembroSilver())
+			return 0.9;
+		return 1.0;
 	}
 
 	private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
-	    return total * calcularDescuento(usuario);
+		return total * calcularDescuento(usuario);
 	}
 
 }
