@@ -88,10 +88,15 @@ public class EntornosFactorizar {
 			total = aplicarDescuentoPorUsuario(usuario, total);
 		}
 
+		total = asegurarValorNegativo(total);
+
+		return total;
+	}
+
+	private double asegurarValorNegativo(double total) {
 		if (total < 0) {
 			total = 0;
 		}
-
 		return total;
 	}
 
