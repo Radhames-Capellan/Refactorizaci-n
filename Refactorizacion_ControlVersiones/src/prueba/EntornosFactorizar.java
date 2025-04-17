@@ -109,8 +109,8 @@ public class EntornosFactorizar {
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
 	//se mejora la legibilidad, y complejidad del codigo al eliminar condicionales multiples
-	private double metodoPago(String metodoPago, double total) {
-	    Map<String, Double> multiplicadores = Map.of(
+	private double metodoPago(final String metodoPago, double total) {
+	   final Map<String, Double> multiplicadores = Map.of(
 	        "TarjetaCredito", 1.05,
 	        "PayPal", 1.02
 	    );
@@ -118,14 +118,15 @@ public class EntornosFactorizar {
 	    return total * multiplicadores.getOrDefault(metodoPago, 1.0);
 	}
 
+	//AITOR: imito al método "metodoPago" para mejorar legibilidad, reducir los condicionales y facilitar la modificacion.
 	private double aplicarCuponDescuento(double total, final String codigoCupon) {
-
-		if (codigoCupon.equals("CUPOFF")) {
-			total *= 0.8;
-		} else if (codigoCupon.equals("NAVIDAD2025")) {
-			total *= 0.75;
-		}
-		return total;
+		final Map<String,Double> cuponesDescuento = Map.of(
+				"CUPOFF",0.8,
+				"NAVIDAD2025", 0.75
+				);
+		
+		return total * cuponesDescuento.getOrDefault(codigoCupon, 1.0);
+		
 	}
 
 	private boolean validarProducto(final String tipoProducto, final String categoriaProducto) {
