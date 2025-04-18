@@ -9,21 +9,21 @@ public class EntornosFactorizar {
 
 	// RADHAMES: 1era refactorizacion, separando responsabilidad de calcular base
 	// total
-	private double calcularBaseTotal(double precioBase, int cantidad) {
+	private double calcularBaseTotal(final double precioBase, final int cantidad) {
 		return precioBase * cantidad;
 	}
 
 	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos
 	// basicos
 
-	private double calcularDescuentosBasicos(double total, double descuento, boolean tieneTarjetaFidelidad,
-			double saldoTarjeta) {
+	private double calcularDescuentosBasicos(double total,final double descuento,final boolean tTarjFidelidad,
+			final double saldoTarjeta) {
 
 		if (descuento > 0) {
 			total -= total * (descuento / 100);
 		}
 
-		if (tieneTarjetaFidelidad && saldoTarjeta > 0) {
+		if (tTarjFidelidad && saldoTarjeta > 0) {
 			total -= saldoTarjeta;
 		}
 		return total;
@@ -33,13 +33,13 @@ public class EntornosFactorizar {
 	// RADHAMES: 4ta refactorizacion, separar responsabilidad de aplicacion de
 	// impuesto
 
-	private double aplicarImpuestos(double total, double impuestos) {
+	private double aplicarImpuestos(final double total, final double impuestos) {
 		return total + (total * (impuestos / 100));
 	}
 
 	// RADHAMES: 5ta refactorizacion, promociones especiales
-	private double promocionesEspeciales(double total, boolean esOfertaEspecial, boolean esNavidad,
-			boolean esMiembroVip) {
+	private double promocionesEspeciales(double total, final boolean esOfertaEspecial,final boolean esNavidad,
+			final boolean esMiembroVip) {
 		if (esOfertaEspecial) {
 			total *= 0.9;
 		}
@@ -55,16 +55,16 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	public double calcularPrecioFinal(double precioBase, int cantidad, double descuento, double impuestos,
-			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
-			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
-			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
+	public double calcularPrecioFinal(final double precioBase,final int cantidad, final double descuento,final double impuestos,
+			final boolean tTarjFidelidad, final double saldoTarjeta, final boolean esOfertaEspecial,final boolean esNavidad,
+			final boolean esMiembroVip,final  String metodoPago,final  boolean aplicarCuotas,final int cuota,final  boolean esEnvioGratis,
+			final double precioEnvio,final String tipoProducto,final  String categoriaProducto,final  String codigoCupon,final Usuario usuario) {
 
 		double total = calcularBaseTotal(precioBase, cantidad);
 
 		// RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la
 		// variable total para que se actualice su valor al metodo aplicado
-		total = calcularDescuentosBasicos(total, descuento, tieneTarjetaFidelidad, saldoTarjeta);
+		total = calcularDescuentosBasicos(total, descuento, tTarjFidelidad, saldoTarjeta);
 
 		total = aplicarImpuestos(total, impuestos);
 
@@ -99,10 +99,9 @@ public class EntornosFactorizar {
 		}
 		return total;
 	}
-	//PABLO Se mejora metodo aplicar cuotas añadiendo un mapa para mejora la legibilidad,
-	// y complejidad del codigo al eliminar condicionales
-	// multiples
-	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
+	//PABLO Se mejora metodo con map,mejora la legibilidad,y complejidad del codigo.
+	
+	private double aplicarCuotas(final boolean aplicarCuotas, final int cuota, double total) {
 	    if (aplicarCuotas) {
 	        Map<Integer, Double> factores = Map.of(
 	            3, 1.1,
@@ -115,14 +114,14 @@ public class EntornosFactorizar {
 	    return total;
 	}
 
-	private double aplicarEnvio(final boolean esEnvioGratis, final double precioEnvio, final double total) {
+	private double aplicarEnvio(final boolean esEnvioGratis,final double precioEnvio,final double total) {
 
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
 
 	// se mejora la legibilidad, y complejidad del codigo al eliminar condicionales
 	// multiples
-	private double metodoPago(final String metodoPago, double total) {
+	private double metodoPago(final String metodoPago, final double total) {
 		final Map<String, Double> multiplicadores = Map.of("TarjetaCredito", 1.05, "PayPal", 1.02);
 
 		return total * multiplicadores.getOrDefault(metodoPago, 1.0);
@@ -130,7 +129,7 @@ public class EntornosFactorizar {
 
 	// AITOR: imito al método "metodoPago" para mejorar legibilidad, reducir los
 	// condicionales y facilitar la modificacion.
-	private double aplicarCuponDescuento(double total, final String codigoCupon) {
+	private double aplicarCuponDescuento(final double total, final String codigoCupon) {
 		final Map<String, Double> cuponesDescuento = Map.of("CUPOFF", 0.8, "NAVIDAD2025", 0.75);
 
 		return total * cuponesDescuento.getOrDefault(codigoCupon, 1.0);
