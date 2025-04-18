@@ -147,17 +147,21 @@ public class EntornosFactorizar {
 	// separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del
 	// codigo y la complejidad ciclomatica
 	private double calcularDescuento(final Usuario usuario) {
-		if (usuario.isEmpleado())
-			return 0.7;
-		if (usuario.isMiembroGold())
-			return 0.85;
-		if (usuario.isMiembroSilver())
-			return 0.9;
-		return 1.0;
+	    double descuento = 1.0; // Valor sin descuento
+	    if (usuario.isEmpleado()) {
+	        descuento = 0.7;
+	    } else if (usuario.isMiembroGold()) {
+	        descuento = 0.85;
+	    } else if (usuario.isMiembroSilver()) {
+	        descuento = 0.9;
+	    }
+	    return descuento;
 	}
 
 	private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
-		return total * calcularDescuento(usuario);
+	    double descuento = calcularDescuento(usuario);
+	    return total * descuento;
 	}
+
 
 }
