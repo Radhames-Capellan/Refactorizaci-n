@@ -55,7 +55,7 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	public double calculaDato(final double precioBase,final int cantidad, final double descuento,final double impuestos,
+	public double calcularPrecioFinal(final double precioBase,final int cantidad, final double descuento,final double impuestos,
 			final boolean tTarjFidelidad, final double saldoTarjeta, final boolean esOfertaEspecial,final boolean esNavidad,
 			final boolean esMiembroVip,final  String metodoPago,final  boolean aplicarCuotas,final int cuota,final  boolean esEnvioGratis,
 			final double precioEnvio,final String tipoProducto,final  String categoriaProducto,final  String codigoCupon,final Usuario usuario) {
