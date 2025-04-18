@@ -101,24 +101,13 @@ public class EntornosFactorizar {
 	}
 
 	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
-		if (aplicarCuotas) {
-			switch (cuota) {
-			case 3:
-				total *= 1.1;
-				break;
-			case 6:
-				total *= 1.2;
-				break;
-
-			case 12:
-				total *= 1.3;
-				break;
-
-			default:
-				break;
-			}
-		}
-		return total;
+		if (!aplicarCuotas) return total;
+		 Map<Integer, Double> recargos = Map.of(
+			        3, 1.1,
+			        6, 1.2,
+			        12, 1.3
+			    );
+		return total  * recargos.getOrDefault(cuota, 1.0);
 	}
 
 	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
