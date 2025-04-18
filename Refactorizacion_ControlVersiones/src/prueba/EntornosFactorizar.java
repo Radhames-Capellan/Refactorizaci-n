@@ -55,7 +55,7 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	public double calculaDato(double precioBase, int cantidad, double descuento, double impuestos,
+	public double calcularPrecioFinal(double precioBase, int cantidad, double descuento, double impuestos,
 			boolean tieneTarjetaFidelidad, double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad,
 			boolean esMiembroVip, String metodoPago, boolean aplicarCuotas, int cuota, boolean esEnvioGratis,
 			double precioEnvio, String tipoProducto, String categoriaProducto, String codigoCupon, Usuario usuario) {
@@ -115,7 +115,7 @@ public class EntornosFactorizar {
 	    return total;
 	}
 
-	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
+	private double aplicarEnvio(final boolean esEnvioGratis, final double precioEnvio, final double total) {
 
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
