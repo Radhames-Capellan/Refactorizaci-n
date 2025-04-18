@@ -99,26 +99,20 @@ public class EntornosFactorizar {
 		}
 		return total;
 	}
-
+	//PABLO Se mejora metodo aplicar cuotas añadiendo un mapa para mejora la legibilidad,
+	// y complejidad del codigo al eliminar condicionales
+	// multiples
 	private double aplicarCuotas(boolean aplicarCuotas, int cuota, double total) {
-		if (aplicarCuotas) {
-			switch (cuota) {
-			case 3:
-				total *= 1.1;
-				break;
-			case 6:
-				total *= 1.2;
-				break;
+	    if (aplicarCuotas) {
+	        Map<Integer, Double> factores = Map.of(
+	            3, 1.1,
+	            6, 1.2,
+	            12, 1.3
+	        );
 
-			case 12:
-				total *= 1.3;
-				break;
-
-			default:
-				break;
-			}
-		}
-		return total;
+	        total *= factores.getOrDefault(cuota, 1.0);
+	    }
+	    return total;
 	}
 
 	private double aplicarEnvio(boolean esEnvioGratis, double precioEnvio, double total) {
