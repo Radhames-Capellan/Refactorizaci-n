@@ -1,29 +1,25 @@
 package prueba;
-/** 
- * @autor Pablo Rodriguez Moreno 1DAM
- * @Creacion 19 abr 2025 16:33:21
- */
 
 public class Compra {
-    private double precioBase;
-    private int cantidad;
-    private double descuento;
-    private double impuestos;
-    private boolean tTarjFidelidad;
-    private double saldoTarjeta;
-    private boolean esOfertaEspecial;
-    private boolean esNavidad;
-    private boolean esMiembroVip;
-    private String metodoPago;
-    private boolean aplicarCuotas;
-    private int cuota;
-    private boolean esEnvioGratis;
-    private double precioEnvio;
-    private String tipoProducto;
-    private String categoriaProducto;
-    private String codigoCupon;
-    private Usuario usuario;
-    
+	private double precioBase;
+	private int cantidad;
+	private double descuento;
+	private double impuestos;
+	private boolean tTarjFidelidad;
+	private double saldoTarjeta;
+	private boolean esOfertaEspecial;
+	private boolean esNavidad;
+	private boolean esMiembroVip;
+	private String metodoPago;
+	private boolean aplicarCuotas;
+	private int cuota;
+	private boolean esEnvioGratis;
+	private double precioEnvio;
+	private String tipoProducto;
+	private String categoriaProducto;
+	private String codigoCupon;
+	private Usuario usuario;
+
 	public Compra(double precioBase, int cantidad, double descuento, double impuestos, boolean tTarjFidelidad,
 			double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad, boolean esMiembroVip, String metodoPago,
 			boolean aplicarCuotas, int cuota, boolean esEnvioGratis, double precioEnvio, String tipoProducto,
@@ -192,6 +188,5 @@ public class Compra {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-    
+
 }
