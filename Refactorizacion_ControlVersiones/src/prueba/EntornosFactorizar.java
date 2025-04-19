@@ -18,15 +18,15 @@ public class EntornosFactorizar {
 
 	private double calcularDescuentosBasicos(double total,final double descuento,final boolean tTarjFidelidad,
 			final double saldoTarjeta) {
-
+		double resultado = total;
 		if (descuento > 0) {
-			total -= total * (descuento / 100);
+			resultado -= resultado * (descuento / 100);
 		}
 
 		if (tTarjFidelidad && saldoTarjeta > 0) {
-			total -= saldoTarjeta;
+			resultado -= saldoTarjeta;
 		}
-		return total;
+		return resultado;
 
 	}
 
@@ -55,43 +55,33 @@ public class EntornosFactorizar {
 		return total;
 	}
 
-	public double calcularPrecioFinal(final double precioBase,final int cantidad, final double descuento,final double impuestos,
-			final boolean tTarjFidelidad, final double saldoTarjeta, final boolean esOfertaEspecial,final boolean esNavidad,
-			final boolean esMiembroVip,final  String metodoPago,final  boolean aplicarCuotas,final int cuota,final  boolean esEnvioGratis,
-			final double precioEnvio,final String tipoProducto,final  String categoriaProducto,final  String codigoCupon,final Usuario usuario) {
+	public double calcularPrecioFinal(final Compra compra) {
+	    double total = calcularBaseTotal(compra.getPrecioBase(), compra.getCantidad());
+	    //PABLO: Refactorizacion creando clase compra
+	    total = calcularDescuentosBasicos(total, compra.getDescuento(), compra.istTarjFidelidad(), compra.getSaldoTarjeta());
+	    total = aplicarImpuestos(total, compra.getImpuestos());
+	    total = promocionesEspeciales(total, compra.isEsOfertaEspecial(), compra.isEsNavidad(), compra.isEsMiembroVip());
+	    total = metodoPago(compra.getMetodoPago(), total);
+	    total = aplicarCuotas(compra.isAplicarCuotas(), compra.getCuota(), total);
+	    total = aplicarEnvio(compra.isEsEnvioGratis(), compra.getPrecioEnvio(), total);
 
-		double total = calcularBaseTotal(precioBase, cantidad);
+	    if (compra.getCodigoCupon() != null && !compra.getCodigoCupon().isEmpty()) {
+	        total = aplicarCuponDescuento(total, compra.getCodigoCupon());
+	    }
 
-		// RADHAMES: 3era refactorizacion, no estaba retornando un valor, se asigno a la
-		// variable total para que se actualice su valor al metodo aplicado
-		total = calcularDescuentosBasicos(total, descuento, tTarjFidelidad, saldoTarjeta);
+	    if (!validarProducto(compra.getTipoProducto(), compra.getCategoriaProducto())) {
+	        throw new IllegalArgumentException("El producto no es válido para esta compra.");
+	    }
 
-		total = aplicarImpuestos(total, impuestos);
+	    if (compra.getUsuario() != null) {
+	        total = aplicarDescuentoPorUsuario(compra.getUsuario(), total);
+	    }
 
-		total = promocionesEspeciales(total, esOfertaEspecial, esNavidad, esMiembroVip);
+	    total = asegurarValorNegativo(total);
 
-		total = metodoPago(metodoPago, total);
-
-		total = aplicarCuotas(aplicarCuotas, cuota, total);
-
-		total = aplicarEnvio(esEnvioGratis, precioEnvio, total);
-
-		if (codigoCupon != null && !codigoCupon.isEmpty()) {
-			total = aplicarCuponDescuento(total, codigoCupon);
-		}
-
-		if (!validarProducto(tipoProducto, categoriaProducto)) {
-			throw new IllegalArgumentException("El producto no es válido para esta compra.");
-		}
-
-		if (usuario != null) {
-			total = aplicarDescuentoPorUsuario(usuario, total);
-		}
-
-		total = asegurarValorNegativo(total);
-
-		return total;
+	    return total;
 	}
+
 
 	private double asegurarValorNegativo(double total) {
 		if (total < 0) {
@@ -103,7 +93,7 @@ public class EntornosFactorizar {
 	
 	private double aplicarCuotas(final boolean aplicarCuotas, final int cuota, double total) {
 	    if (aplicarCuotas) {
-	        Map<Integer, Double> factores = Map.of(
+	       final Map<Integer, Double> factores = Map.of(
 	            3, 1.1,
 	            6, 1.2,
 	            12, 1.3
