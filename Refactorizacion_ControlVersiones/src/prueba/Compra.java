@@ -20,10 +20,11 @@ public class Compra {
 	private String codigoCupon;
 	private Usuario usuario;
 
-	public Compra(double precioBase, int cantidad, double descuento, double impuestos, boolean tTarjFidelidad,
-			double saldoTarjeta, boolean esOfertaEspecial, boolean esNavidad, boolean esMiembroVip, String metodoPago,
-			boolean aplicarCuotas, int cuota, boolean esEnvioGratis, double precioEnvio, String tipoProducto,
-			String categoriaProducto, String codigoCupon, Usuario usuario) {
+	public Compra(final double precioBase, final int cantidad, final double descuento, final double impuestos,
+			final boolean tTarjFidelidad, final double saldoTarjeta, final boolean esOfertaEspecial,
+			final boolean esNavidad, final boolean esMiembroVip, final String metodoPago, final boolean aplicarCuotas,
+			final int cuota, final boolean esEnvioGratis, final double precioEnvio, final String tipoProducto,
+			final String categoriaProducto, final String codigoCupon, final Usuario usuario) {
 		super();
 		this.precioBase = precioBase;
 		this.cantidad = cantidad;

@@ -16,7 +16,7 @@ public class EntornosFactorizar {
 	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos
 	// basicos
 
-	private double calcularDescuentosBasicos(double total,final double descuento,final boolean tTarjFidelidad,
+	private double calcularDescuentosBasicos(double total, final double descuento, final boolean tTarjFidelidad,
 			final double saldoTarjeta) {
 		double resultado = total;
 		if (descuento > 0) {
@@ -38,73 +38,74 @@ public class EntornosFactorizar {
 	}
 
 	// RADHAMES: 5ta refactorizacion, promociones especiales
-	private double promocionesEspeciales(double total, final boolean esOfertaEspecial,final boolean esNavidad,
+	private double promocionesEspeciales(final double total, final boolean esOfertaEspecial, final boolean esNavidad,
 			final boolean esMiembroVip) {
+		double resultado = total;
 		if (esOfertaEspecial) {
-			total *= 0.9;
+			resultado *= 0.9;
 		}
 
 		if (esNavidad) {
-			total *= 0.85;
+			resultado *= 0.85;
 		}
 
 		if (esMiembroVip) {
-			total *= 0.8;
+			resultado *= 0.8;
 		}
 
-		return total;
+		return resultado;
 	}
 
 	public double calcularPrecioFinal(final Compra compra) {
-	    double total = calcularBaseTotal(compra.getPrecioBase(), compra.getCantidad());
-	    //PABLO: Refactorizacion creando clase compra
-	    total = calcularDescuentosBasicos(total, compra.getDescuento(), compra.istTarjFidelidad(), compra.getSaldoTarjeta());
-	    total = aplicarImpuestos(total, compra.getImpuestos());
-	    total = promocionesEspeciales(total, compra.isEsOfertaEspecial(), compra.isEsNavidad(), compra.isEsMiembroVip());
-	    total = metodoPago(compra.getMetodoPago(), total);
-	    total = aplicarCuotas(compra.isAplicarCuotas(), compra.getCuota(), total);
-	    total = aplicarEnvio(compra.isEsEnvioGratis(), compra.getPrecioEnvio(), total);
+		double total = calcularBaseTotal(compra.getPrecioBase(), compra.getCantidad());
+		// PABLO: Refactorizacion creando clase compra
+		total = calcularDescuentosBasicos(total, compra.getDescuento(), compra.istTarjFidelidad(),
+				compra.getSaldoTarjeta());
+		total = aplicarImpuestos(total, compra.getImpuestos());
+		total = promocionesEspeciales(total, compra.isEsOfertaEspecial(), compra.isEsNavidad(),
+				compra.isEsMiembroVip());
+		total = metodoPago(compra.getMetodoPago(), total);
+		total = aplicarCuotas(compra.isAplicarCuotas(), compra.getCuota(), total);
+		total = aplicarEnvio(compra.isEsEnvioGratis(), compra.getPrecioEnvio(), total);
 
-	    if (compra.getCodigoCupon() != null && !compra.getCodigoCupon().isEmpty()) {
-	        total = aplicarCuponDescuento(total, compra.getCodigoCupon());
-	    }
-
-	    if (!validarProducto(compra.getTipoProducto(), compra.getCategoriaProducto())) {
-	        throw new IllegalArgumentException("El producto no es válido para esta compra.");
-	    }
-
-	    if (compra.getUsuario() != null) {
-	        total = aplicarDescuentoPorUsuario(compra.getUsuario(), total);
-	    }
-
-	    total = asegurarValorNegativo(total);
-
-	    return total;
-	}
-
-
-	private double asegurarValorNegativo(double total) {
-		if (total < 0) {
-			total = 0;
+		if (compra.getCodigoCupon() != null && !compra.getCodigoCupon().isEmpty()) {
+			total = aplicarCuponDescuento(total, compra.getCodigoCupon());
 		}
+
+		if (!validarProducto(compra.getTipoProducto(), compra.getCategoriaProducto())) {
+			throw new IllegalArgumentException("El producto no es válido para esta compra.");
+		}
+
+		if (compra.getUsuario() != null) {
+			total = aplicarDescuentoPorUsuario(compra.getUsuario(), total);
+		}
+
+		total = asegurarValorNegativo(total);
+
 		return total;
 	}
-	//PABLO Se mejora metodo con map,mejora la legibilidad,y complejidad del codigo.
-	
-	private double aplicarCuotas(final boolean aplicarCuotas, final int cuota, double total) {
-	    if (aplicarCuotas) {
-	       final Map<Integer, Double> factores = Map.of(
-	            3, 1.1,
-	            6, 1.2,
-	            12, 1.3
-	        );
 
-	        total *= factores.getOrDefault(cuota, 1.0);
-	    }
-	    return total;
+	private double asegurarValorNegativo(final double total) {
+		double resultado = total;
+		if (resultado < 0) {
+			resultado = 0;
+		}
+		return resultado;
+	}
+	// PABLO Se mejora metodo con map,mejora la legibilidad,y complejidad del
+	// codigo.
+
+	private double aplicarCuotas(final boolean aplicarCuotas, final int cuota, final double total) {
+		double resultado = total;
+		if (aplicarCuotas) {
+			final Map<Integer, Double> factores = Map.of(3, 1.1, 6, 1.2, 12, 1.3);
+
+			resultado *= factores.getOrDefault(cuota, 1.0);
+		}
+		return resultado;
 	}
 
-	private double aplicarEnvio(final boolean esEnvioGratis,final double precioEnvio,final double total) {
+	private double aplicarEnvio(final boolean esEnvioGratis, final double precioEnvio, final double total) {
 
 		return esEnvioGratis ? total : total + precioEnvio;
 	}
@@ -137,21 +138,20 @@ public class EntornosFactorizar {
 	// separo metodo aplicar descuento y calcularlo para mejorar la legibilidad del
 	// codigo y la complejidad ciclomatica
 	private double calcularDescuento(final Usuario usuario) {
-	    double descuento = 1.0; // Valor sin descuento
-	    if (usuario.isEmpleado()) {
-	        descuento = 0.7;
-	    } else if (usuario.isMiembroGold()) {
-	        descuento = 0.85;
-	    } else if (usuario.isMiembroSilver()) {
-	        descuento = 0.9;
-	    }
-	    return descuento;
+		double descuento = 1.0; // Valor sin descuento
+		if (usuario.isEmpleado()) {
+			descuento = 0.7;
+		} else if (usuario.isMiembroGold()) {
+			descuento = 0.85;
+		} else if (usuario.isMiembroSilver()) {
+			descuento = 0.9;
+		}
+		return descuento;
 	}
 
 	private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
-	    double descuento = calcularDescuento(usuario);
-	    return total * descuento;
+		final double descuento = calcularDescuento(usuario);
+		return total * descuento;
 	}
-
 
 }
