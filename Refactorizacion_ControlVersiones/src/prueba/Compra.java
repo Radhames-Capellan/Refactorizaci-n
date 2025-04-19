@@ -1,5 +1,5 @@
 package prueba;
-
+//creación clase compra
 public class Compra {
 	private double precioBase;
 	private int cantidad;
