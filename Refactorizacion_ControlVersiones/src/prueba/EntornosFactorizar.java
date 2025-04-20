@@ -38,22 +38,25 @@ public class EntornosFactorizar {
 	}
 
 	// RADHAMES: 5ta refactorizacion, promociones especiales
+	// RADHAMES: modificacion renombrado resultado -> descuento
 	private double promocionesEspeciales(final double total, final boolean esOfertaEspecial, final boolean esNavidad,
 			final boolean esMiembroVip) {
-		double resultado = total;
+		
+		double descuento = 1.0;
+		
 		if (esOfertaEspecial) {
-			resultado *= 0.9;
+			descuento *= 0.9;
 		}
 
 		if (esNavidad) {
-			resultado *= 0.85;
+			descuento *= 0.85;
 		}
 
 		if (esMiembroVip) {
-			resultado *= 0.8;
+			descuento *= 0.8;
 		}
 
-		return resultado;
+		return total * descuento;
 	}
 
 	public double calcularPrecioFinal(final Compra compra) {
