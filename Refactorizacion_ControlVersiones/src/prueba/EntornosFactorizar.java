@@ -16,7 +16,7 @@ public class EntornosFactorizar {
 	// RADHAMES: 2da refactorizacion, separando responsabilidad de descuentos
 	// basicos
 
-	private double calcularDescuentosBasicos(double total,final double descuento,final boolean tTarjFidelidad,
+	private double calcularDescuentosBasicos(final double total,final double descuento,final boolean tTarjFidelidad,
 			final double saldoTarjeta) {
 		double resultado = total;
 		if (descuento > 0) {
@@ -149,7 +149,7 @@ public class EntornosFactorizar {
 	}
 
 	private double aplicarDescuentoPorUsuario(final Usuario usuario, final double total) {
-	    double descuento = calcularDescuento(usuario);
+	    final double descuento = calcularDescuento(usuario);
 	    return total * descuento;
 	}
 
